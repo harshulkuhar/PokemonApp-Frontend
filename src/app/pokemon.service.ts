@@ -23,7 +23,7 @@ export class PokemonService {
   }
 
   public addPokemon(pokemon: Pokemon): Observable<string>{
-    return this.http.post<string>(`${this.apiServerUrl}/pokemon/add`, pokemon);
+    return this.http.post<string>(`${this.apiServerUrl}/pokemon/add`, pokemon, {responseType: 'text' as 'json'});
   }
 
   public updatePokemon(pokemon: Pokemon): Observable<string>{
