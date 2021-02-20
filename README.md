@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+You first need to run your Spring Boot Applications set to `http://localhost:8080/`. Alternatively, you can change the `apiBaseUrl` to a path of your choice.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
