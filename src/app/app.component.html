@@ -11,8 +11,8 @@
         </li>
      </ul>
      <form class="form-inline my-2 my-lg-0">
-      <input type="search" (ngModelChange)="onSearchPokemon(key.value)" #key="ngModel" ngModel
-       name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search Pokemon..." required>
+      <input type="search" (ngModelChange)="onSearchPokemon(search.value)" #search="ngModel" ngModel
+       name="search" id="searchName" class="form-control mr-sm-2" placeholder="Search Pokemon..." required>
    </form>
   </div>
 </nav>

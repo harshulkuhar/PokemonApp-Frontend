@@ -71,19 +71,19 @@ export class AppComponent implements OnInit{
                               });
   }
 
-  public onSearchPokemon(key: string): void {
-    console.log(key);
+  public onSearchPokemon(search: string): void {
+    console.log(search);
     const results: Pokemon[] = [];
     for (const pokemon of this.pokemons) {
-      if (pokemon.id === Number(key)
-      || pokemon.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || pokemon.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || pokemon.region.toLowerCase().indexOf(key.toLowerCase()) !== -1){
+      if (pokemon.id === Number(search) // Typecasting to a number to compare it with pokedex # of all pokmeon
+      || pokemon.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
+      || pokemon.type.toLowerCase().indexOf(search.toLowerCase()) !== -1
+      || pokemon.region.toLowerCase().indexOf(search.toLowerCase()) !== -1){
         results.push(pokemon);
       }
     }
     this.pokemons = results;
-    if (results.length === 0 || !key) {
+    if (results.length === 0 || !search) {
       this.getAllPokemon();
     }
   }
