@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://pokeapp-backend.herokuapp.com/'
+  apiBaseUrl: 'http://localhost:8080/'
 };
 
 /*
