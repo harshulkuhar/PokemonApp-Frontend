@@ -42,6 +42,7 @@ export class AppComponent implements OnInit{
                               (response: string) => {
                                 console.log(response);
                                 this.getAllPokemon();
+                                addForm.reset(); // To reset the form.
                               },
                               (error: HttpErrorResponse) => {
                                 alert(error.message);
