@@ -114,11 +114,6 @@ export class AppComponent implements OnInit{
       button.setAttribute('data-target', '#deletePokemonModal');
     }
 
-    // FOR SEARCHING A SPECIFIC POKEMON
-    if (mode === 'find'){
-      button.setAttribute('data-target', '#findPokemonModal');
-    }
-
     /** Now that we have configured our button, we can add it to the container. */
     container.appendChild(button);
     button.click(); // Clicks the button for you.
