@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
-    "start": "ng http-server-spa dist/app-pokemon index.html $PORT",
+    "start": "ng http-server-spa dist/PokemonApp-Frontend index.html $PORT",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
