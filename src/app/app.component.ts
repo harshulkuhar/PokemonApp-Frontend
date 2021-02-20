@@ -13,23 +13,29 @@ export class AppComponent implements OnInit{
   title = 'All Pokemon';
 
   public pokemons: Pokemon[];
+  public pokemonToBeEdited: Pokemon; // this variable will contain the value of the pokemon that needs to be edited, when the edit button is clicked.
+  public pokemonToBeDeleted: Pokemon; // this variable will contain the value of the pokemon that needs to be edited, when the edit button is clicked.
+
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(){
     this.getAllPokemon();
   }
 
-  public getAllPokemon(): void{
+  /**
+   * The function to get all Pokemon to display as cards on the frontend.
+   */
+  public getAllPokemon(): void {
     this.pokemonService.getAllPokemon().subscribe(
-                              (response: Pokemon[]) => {
+                              (response: Pokemon[]) => { // waits for a response of which should be an array of Pokemon objects.
                                 this.pokemons = response;
                               },
-                              (error: HttpErrorResponse) => {
+                              (error: HttpErrorResponse) => { // otherwise it returns an error.
                                 alert(error.message);
                               });
   }
 
-  public onAddPokemon(addForm: NgForm): void{
+  public onAddPokemon(addForm: NgForm): void {
     document.getElementById('add-pokemon-form-exit').click(); //Click on the Close button to get rid of the Modal window, then work with the JSON output.
 
     this.pokemonService.addPokemon(addForm.value).subscribe(
@@ -40,6 +46,45 @@ export class AppComponent implements OnInit{
                               (error: HttpErrorResponse) => {
                                 alert(error.message);
                               });
+  }
+
+  public onUpdatePokemon(pokemon: Pokemon): void {
+    this.pokemonService.updatePokemon(pokemon).subscribe(
+                              (response: string) => {
+                                console.log(response);
+                                this.getAllPokemon();
+                              },
+                              (error: HttpErrorResponse) => {
+                                alert(error.message);
+                              });
+  }
+
+  public onDeletePokemon(id: number): void {
+    this.pokemonService.deletePokemon(id).subscribe(
+                              (response: string) => {
+                                console.log(response);
+                                this.getAllPokemon();
+                              },
+                              (error: HttpErrorResponse) => {
+                                alert(error.message);
+                              });
+  }
+
+  public onSearchPokemon(key: string): void {
+    console.log(key);
+    const results: Pokemon[] = [];
+    for (const pokemon of this.pokemons) {
+      if (pokemon.id === Number(key)
+      || pokemon.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || pokemon.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || pokemon.region.toLowerCase().indexOf(key.toLowerCase()) !== -1){
+        results.push(pokemon);
+      }
+    }
+    this.pokemons = results;
+    if (results.length === 0 || !key) {
+      this.getAllPokemon();
+    }
   }
 
   public onOpenModal(pokemon: Pokemon, mode: string): void{
@@ -58,11 +103,13 @@ export class AppComponent implements OnInit{
 
     // FOR UPDATE POKEMON
     if (mode === 'update'){
+      this.pokemonToBeEdited = pokemon;
       button.setAttribute('data-target', '#updatePokemonModal');
     }
 
     // FOR DELETE POKEMON
     if (mode === 'delete'){
+      this.pokemonToBeDeleted = pokemon;
       button.setAttribute('data-target', '#deletePokemonModal');
     }
 

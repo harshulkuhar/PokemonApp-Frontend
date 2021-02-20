@@ -27,11 +27,11 @@ export class PokemonService {
   }
 
   public updatePokemon(pokemon: Pokemon): Observable<string>{
-    return this.http.put<string>(`${this.apiServerUrl}/pokemon/update`, pokemon);
+    return this.http.put<string>(`${this.apiServerUrl}/pokemon/update`, pokemon, {responseType: 'text' as 'json'});
   }
 
   public deletePokemon(id: number): Observable<string>{
-    return this.http.delete<string>(`${this.apiServerUrl}/pokemon/delete/${id}`);
+    return this.http.delete<string>(`${this.apiServerUrl}/pokemon/delete/${id}`,{responseType: 'text' as 'json'});
   }
 
 }
