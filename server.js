@@ -5,10 +5,10 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static('./src/PokemonApp-Frontend/'));
+app.use(express.static('./PokemonApp-Frontend/src'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'src/PokemonApp-Frontend/'}),
+    res.sendFile('PokemonApp-Frontend/src/index.html'),
 );
 
 // Start the app by listening on the default Heroku port
