@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://pokeapp-backend.herokuapp.com/'
+  apiBaseUrl: 'https://pokeapp-backend.herokuapp.com/'
 };
